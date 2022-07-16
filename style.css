@@ -1,3 +1,83 @@
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --main-font : 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--main-font);
+  overflow: hidden;
+  background-color: whitesmoke;
+}
+body > h1 {
+  font-size: 3.5vw;
+  text-align: center;
+}
+
+.chooseShape {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: whitesmoke;
+  overflow: hidden;
+  text-align: center;
+}
+
+#chooseShapeClosed {
+  display: none;
+}
+
+.chooseShape > h1 {
+  font-size: 2vw;
+}
+
+.shapes {
+display: flex;
+gap: 80px;
+margin-left: auto;
+margin-right: auto;
+margin-top: 5%;
+}
+
+.shapes > div {
+  font-size: 6vw;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+align-self: center;
+cursor: pointer;
+}
+
+.grid-container {
+  display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr;
+  width: 600px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  cursor: pointer;
+}
+
+#one, #four, #seven {
+ border-right: 4px solid rgb(107, 107, 107);
+}
+
+#three, #six, #nine {
+  border-left: 4px solid rgb(110, 110, 110);
+}
+
+#one, #two, #three, #four, #five, #six {
+  border-bottom: 4px solid rgb(112, 112, 112);
+}
+
+
+.shapes > div:hover {
+background-color: rgb(187, 187, 187);
+}
