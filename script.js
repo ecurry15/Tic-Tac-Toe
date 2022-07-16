@@ -12,6 +12,22 @@ let playerTwoSelection = "";
 let currentPlayer = 1;
 
 const gameSquares = document.querySelectorAll('.gridSquares');
+const chooseShapeScreen = document.querySelector('.chooseShape');
+const shapes = document.querySelectorAll('.shapes');
+
+
+shapes.forEach(shape => {
+  shape.addEventListener('click', function () {
+chooseShapeScreen.id = 'chooseShapeClosed';
+if (shape.id == 'x') {
+  playerOneSelection = "x";
+  playerTwoSelection = "o";
+} else {
+  playerOneSelection = "o";
+  playerTwoSelection = "x";
+}
+  })
+});
 
 
 const checkForWinner = function() {
