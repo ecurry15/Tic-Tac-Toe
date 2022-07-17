@@ -84,7 +84,45 @@ grid-template-rows: 1fr 1fr 1fr;
   border-bottom: 4px solid rgb(112, 112, 112);
 }
 
+.results {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-color: whitesmoke;
+  overflow: hidden;
+ align-items: center;
+}
+
+.results > h1 {
+  font-size: 2.5vw;
+  cursor: pointer;
+}
+
+.results > h2 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 1.2vw;
+  width: 20%;
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  cursor: pointer;
+  letter-spacing: 1%;
+}
+
+#resultsClosed {
+  display: none;
+}
 
 .x-or-o > div:hover {
 background-color: rgb(187, 187, 187);
+}
+
+.results > h2:hover {
+  background-color: rgb(218, 218, 218);
 }
