@@ -2,22 +2,17 @@
 const gameBoard = (() => {
   // DOM ELEMENTS ------
   const gameSquares = document.querySelectorAll('[data-cell]');
- const gridContainer = document.getElementById('grid-container');
+const chooseShapeScreen = document.querySelector('.chooseShape');
+const shapes = document.querySelectorAll('.shapes');
+const results = document.querySelector('.results');
+const resultsMessage = document.querySelector('.resultsMessage');
+const resartGame = document.querySelector('.startOver');
 
 //Variables ----
   const xClass = 'X';
   const circleClass = 'O';
-  let circleTurn;
+  let circleTurn = false;
 
-
-let startGame = () => {
-  circleTurn = false;
-  gameSquares.forEach(square => {
-    square.addEventListener('click', handleClick, {once: true})
-  })
-};
-
-startGame();
 
   const winningCombinations = [
     [0,1,2],
@@ -40,9 +35,13 @@ function handleClick(e) {
   const currentSymbol = circleTurn ? circleClass : xClass;
   placeMark(cell, currentSymbol);
  if (checkForWinner(currentSymbol)) {
-console.log('win');
- }
+endGame(false);
+ } else if (draw()) {
+  endGame(true);
+ } else {
   switchTurns();
+ }
+
 }
 
 // Add a data attribute to the clicked sqaure and input specified symbol --
@@ -63,6 +62,46 @@ function checkForWinner(currentSymbol) {
     })
   })
 }
+
+
+function draw() {
+  return [...gameSquares].every(square => {
+    return square.classList.contains(xClass) || square.classList.contains(circleClass);
+  })
+}
+
+function endGame(draw) {
+if (draw) {
+  resultsMessage.textContent = "Tie Game !"
+} else {
+  resultsMessage.textContent = `${circleTurn ? "O" : "X"} Wins!`;
+}
+results.removeAttribute('id');
+}
+
+
+resartGame.addEventListener('click', function() {
+circleTurn = false;
+results.id = 'resultsClosed';
+gameSquares.forEach(square => {
+  square.classList.remove(xClass);
+  square.classList.remove(circleClass);
+  square.textContent = "";
+  square.removeEventListener('click', handleClick);
+  square.addEventListener('click', handleClick, {once: true});
+  chooseShapeScreen.removeAttribute('id');
+})
+});
+
+
+shapes.forEach(shape => {
+  shape.addEventListener('click', function() {
+    if (shape.id == "o") {
+      circleTurn = true;
+    }
+    chooseShapeScreen.id = 'chooseShapeClosed';
+  })
+})
 
 })();
 
